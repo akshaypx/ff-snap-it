@@ -57,8 +57,8 @@ const FullWidthImageUploader = () => {
     // Simulate API call
     await new Promise((res) => setTimeout(res, 3000));
 
-    // Replace with real data
-    finishFetching([
+    // Mocked values — replace with real API data later
+    const mockedProducts = [
       {
         id: "1",
         title: "Modern Sofa",
@@ -71,8 +71,15 @@ const FullWidthImageUploader = () => {
         image: "/table.jpg",
         price: "$499",
       },
-      // Add more...
-    ]);
+    ];
+
+    const mockedAnnotatedImage =
+      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==";
+    // Add full base64 if testing
+
+    const mockedDetectedItems = ["Sofa", "Table"];
+
+    finishFetching(mockedProducts, mockedAnnotatedImage, mockedDetectedItems);
   };
 
   return (
