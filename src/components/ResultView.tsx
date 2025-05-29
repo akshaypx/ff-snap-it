@@ -16,27 +16,27 @@ const ResultView = () => {
 
   return (
     <div className="max-w-7xl w-full mx-auto px-4 py-12 space-y-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Annotated Image */}
         <Card className="overflow-hidden shadow-md">
-          <CardContent className="p-0">
+          <CardContent className="px-4">
             <img
               src={annotatedImage}
               alt="Annotated"
-              className="w-20 h-80 object-contain"
+              className="w-full h-full object-contain rounded-2xl"
             />
           </CardContent>
         </Card>
 
         {/* Detected Items */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold">We found these items</h2>
+          <h2 className="text-4xl font-semibold">We found these items</h2>
           <div className="flex flex-wrap gap-2">
             {detectedItems.map((item, index) => (
               <Badge
                 key={index}
                 variant="outline"
-                className="text-base px-3 py-1.5"
+                className="text-xl px-3 py-1.5"
               >
                 {item}
               </Badge>

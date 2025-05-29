@@ -6,6 +6,22 @@ import { X, UploadCloud, Sparkles } from "lucide-react";
 import clsx from "clsx";
 import { useAppContext } from "@/AppContext";
 
+// Mocked values — replace with real API data later
+const mockedProducts = [
+  {
+    id: "1",
+    title: "Modern Sofa",
+    image: "/sofa.jpg",
+    price: "$899",
+  },
+  {
+    id: "2",
+    title: "Wooden Table",
+    image: "/table.jpg",
+    price: "$499",
+  },
+];
+
 const FullWidthImageUploader = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -51,35 +67,23 @@ const FullWidthImageUploader = () => {
 
   const handleSubmit = async () => {
     if (!selectedFile) return;
-
     startFetching();
 
-    // Simulate API call
-    await new Promise((res) => setTimeout(res, 3000));
+    const formData = new FormData();
+    formData.append("file", selectedFile);
 
-    // Mocked values — replace with real API data later
-    const mockedProducts = [
-      {
-        id: "1",
-        title: "Modern Sofa",
-        image: "/sofa.jpg",
-        price: "$899",
-      },
-      {
-        id: "2",
-        title: "Wooden Table",
-        image: "/table.jpg",
-        price: "$499",
-      },
-    ];
+    const response = await fetch("http://localhost:8000/detect", {
+      method: "POST",
+      body: formData,
+    });
 
-    const mockedAnnotatedImage =
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==";
-    // Add full base64 if testing
+    const data = await response.json();
 
-    const mockedDetectedItems = ["Sofa", "Table"];
-
-    finishFetching(mockedProducts, mockedAnnotatedImage, mockedDetectedItems);
+    finishFetching(
+      mockedProducts, // You can update this with actual recommended products later
+      data.annotated_image, // base64 string from FastAPI
+      data.detected_items // e.g., ["Sofa", "Chair"]
+    );
   };
 
   return (
