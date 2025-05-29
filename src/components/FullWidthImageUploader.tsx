@@ -4,12 +4,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { X, UploadCloud, Sparkles } from "lucide-react";
 import clsx from "clsx";
+import { useAppContext } from "@/AppContext";
 
 const FullWidthImageUploader = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const { startFetching, finishFetching } = useAppContext();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -45,6 +47,32 @@ const FullWidthImageUploader = () => {
 
   const handleDragLeave = () => {
     setIsDragging(false);
+  };
+
+  const handleSubmit = async () => {
+    if (!selectedFile) return;
+
+    startFetching();
+
+    // Simulate API call
+    await new Promise((res) => setTimeout(res, 3000));
+
+    // Replace with real data
+    finishFetching([
+      {
+        id: "1",
+        title: "Modern Sofa",
+        image: "/sofa.jpg",
+        price: "$899",
+      },
+      {
+        id: "2",
+        title: "Wooden Table",
+        image: "/table.jpg",
+        price: "$499",
+      },
+      // Add more...
+    ]);
   };
 
   return (
@@ -96,7 +124,7 @@ const FullWidthImageUploader = () => {
         {selectedFile && (
           <div className="text-center">
             <p className="text-sm text-muted-foreground">{selectedFile.name}</p>
-            <Button className="mt-3">
+            <Button className="mt-3" onClick={handleSubmit}>
               <Sparkles />
               Find My Style
             </Button>

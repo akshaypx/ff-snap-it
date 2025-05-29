@@ -1,7 +1,15 @@
+import { useAppContext } from "@/AppContext";
 import FullWidthImageUploader from "./FullWidthImageUploader";
 import { Button } from "@/components/ui/button";
+import SkeletonProducts from "./SkeletonProducts";
+import ProductList from "./ProductList";
 
 const HeroWithUploader = () => {
+  const { loading, products } = useAppContext();
+
+  if (loading) return <SkeletonProducts />;
+  if (products) return <ProductList products={products} />;
+
   return (
     <div className="w-full max-w-7xl h-full mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       {/* Left Hero Section */}
