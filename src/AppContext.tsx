@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 
+// Change Product definition only if not defined globally
 export type Product = {
   id: string;
   title: string;
@@ -7,20 +8,30 @@ export type Product = {
   price: string;
 };
 
+export type RecommendationGroups = {
+  similar: Product[];
+  completeLook: Product[];
+  boughtTogether: Product[];
+};
+
 type AppContextType = {
   loading: boolean;
-  products: Product[] | null;
+  products: RecommendationGroups | null;
   annotatedImage: string | null;
   detectedItems: string[];
   startFetching: () => void;
-  finishFetching: (products: Product[], image: string, items: string[]) => void;
+  finishFetching: (
+    products: RecommendationGroups,
+    image: string,
+    items: string[]
+  ) => void;
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState<Product[] | null>(null);
+  const [products, setProducts] = useState<RecommendationGroups | null>(null);
   const [annotatedImage, setAnnotatedImage] = useState<string | null>(null);
   const [detectedItems, setDetectedItems] = useState<string[]>([]);
 
@@ -30,7 +41,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const finishFetching = (
-    products: Product[],
+    products: RecommendationGroups,
     image: string,
     items: string[]
   ) => {

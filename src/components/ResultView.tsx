@@ -46,7 +46,24 @@ const ResultView = () => {
       </div>
 
       {/* Product List */}
-      {products && <ProductList products={products} />}
+      {products && (
+        <div className="space-y-12">
+          <div>
+            <h3 className="text-2xl font-semibold mb-4">Similar Products</h3>
+            <ProductList products={products.similar} />
+          </div>
+          <div>
+            <h3 className="text-2xl font-semibold mb-4">Complete the Look</h3>
+            <ProductList products={products.completeLook} />
+          </div>
+          <div>
+            <h3 className="text-2xl font-semibold mb-4">
+              Often Bought Together
+            </h3>
+            <ProductList products={products.boughtTogether} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

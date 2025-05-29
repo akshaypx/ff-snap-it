@@ -7,20 +7,25 @@ import clsx from "clsx";
 import { useAppContext } from "@/AppContext";
 
 // Mocked values — replace with real API data later
-const mockedProducts = [
-  {
-    id: "1",
-    title: "Modern Sofa",
-    image: "/sofa.jpg",
-    price: "$899",
-  },
-  {
-    id: "2",
-    title: "Wooden Table",
-    image: "/table.jpg",
-    price: "$499",
-  },
-];
+const mockedRecommendations = {
+  similar: [
+    { id: "1", title: "Modern Sofa", image: "/sofa.jpg", price: "$899" },
+    { id: "2", title: "Contemporary Sofa", image: "/sofa2.jpg", price: "$850" },
+  ],
+  completeLook: [
+    {
+      id: "3",
+      title: "Wooden Coffee Table",
+      image: "/table.jpg",
+      price: "$299",
+    },
+    { id: "4", title: "Rug", image: "/rug.jpg", price: "$199" },
+  ],
+  boughtTogether: [
+    { id: "5", title: "Armchair", image: "/armchair.jpg", price: "$450" },
+    { id: "6", title: "Floor Lamp", image: "/lamp.jpg", price: "$150" },
+  ],
+};
 
 const FullWidthImageUploader = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -80,7 +85,7 @@ const FullWidthImageUploader = () => {
     const data = await response.json();
 
     finishFetching(
-      mockedProducts, // You can update this with actual recommended products later
+      mockedRecommendations, // You can update this with actual recommended products later
       data.annotated_image, // base64 string from FastAPI
       data.detected_items // e.g., ["Sofa", "Chair"]
     );
