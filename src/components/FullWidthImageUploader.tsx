@@ -9,21 +9,73 @@ import { useAppContext } from "@/AppContext";
 // Mocked values — replace with real API data later
 const mockedRecommendations = {
   similar: [
-    { id: "1", title: "Modern Sofa", image: "/sofa.jpg", price: "$899" },
-    { id: "2", title: "Contemporary Sofa", image: "/sofa2.jpg", price: "$850" },
+    {
+      id: "1",
+      title: "Drake 2 Seater Sofa",
+      image:
+        "https://api.fantasticfurniture.com.au/medias/Product-Detail-Spartacus-FantasticFurniture-WF-null?context=bWFzdGVyfGltYWdlc3wxOTEyOTJ8aW1hZ2UvanBlZ3xhRFpoTDJnNE9DOHhNREUzT0RZNU1UTXpOREUzTkM5UWNtOWtkV04wTFVSbGRHRnBiQzFUY0dGeWRHRmpkWE5mUm1GdWRHRnpkR2xqUm5WeWJtbDBkWEpsTFZkR1gyNTFiR3d8YmU2ODcwMDdmYWYyN2U1N2I0MTU1ZTAwMzI3YWIzYjEyNTZiMjI1NGVjMDVlZmZkNzk3YmIyN2Y5YzE1ZTNhOA",
+      price: "$539",
+    },
+    {
+      id: "2",
+      title: "Jazz 2 Seater Sofa",
+      image:
+        "https://api.fantasticfurniture.com.au/medias/Product-Detail-Spartacus-FantasticFurniture-WF-null?context=bWFzdGVyfGltYWdlc3wyMDQwMTd8aW1hZ2UvanBlZ3xhRFkxTDJoa01DOHhNREk1TmpnMk16ZzRNekk1TkM5UWNtOWtkV04wTFVSbGRHRnBiQzFUY0dGeWRHRmpkWE5mUm1GdWRHRnpkR2xqUm5WeWJtbDBkWEpsTFZkR1gyNTFiR3d8NDIxMDBlOTViMWJhYjY5Yzk3Y2ZkOTlmM2YzZTY1MDNkNTZlZjgxMTYxZTU2Zjk2ODI1ZjI4NDFiYmU0Yzg1ZA",
+      price: "$629",
+    },
+    {
+      id: "3",
+      title: "Peyton Cognac Sofa",
+      image:
+        "https://api.fantasticfurniture.com.au/medias/Product-Detail-Spartacus-FantasticFurniture-WF-null?context=bWFzdGVyfGltYWdlc3wxMjU3NTZ8aW1hZ2UvanBlZ3xhR1V6TDJoa1lpOHhNREV3TWpVeU5qWTBNREUxT0M5UWNtOWtkV04wTFVSbGRHRnBiQzFUY0dGeWRHRmpkWE5mUm1GdWRHRnpkR2xqUm5WeWJtbDBkWEpsTFZkR1gyNTFiR3d8ZmY0ODZiMGU0ZGIxZmJhZDYzN2ZmOTg4YzAyMTQ1ZDI5ZWYyMzcwOGE3MjE0ZTgyNjMwODYyNjIxMzEzNTg4Ng",
+      price: "$539",
+    },
   ],
   completeLook: [
     {
       id: "3",
-      title: "Wooden Coffee Table",
-      image: "/table.jpg",
-      price: "$299",
+      title: "Toronto Coffee Table",
+      image:
+        "https://api.fantasticfurniture.com.au/medias/Product-Detail-Spartacus-FantasticFurniture-WF-8969101803550.jpg?context=bWFzdGVyfGltYWdlc3w0MzMxNTF8aW1hZ2UvanBlZ3xhREZqTDJobVppODVPVGs0TnpjNE1qWTVOekkyTDFCeWIyUjFZM1F0UkdWMFlXbHNMVk53WVhKMFlXTjFjMTlHWVc1MFlYTjBhV05HZFhKdWFYUjFjbVV0VjBaZk9EazJPVEV3TVRnd016VTFNQzVxY0djfDhkMjM1NDMyZTA2MGNhNmEwNmNkNTlmZTBlOTZjMjNmNDIwYmY5ZmUxZTcyNmYwZjJiM2FjMmI0N2RhMGJkMmY",
+      price: "$339",
     },
-    { id: "4", title: "Rug", image: "/rug.jpg", price: "$199" },
+    {
+      id: "4",
+      title: "Niva Coffee Table",
+      image:
+        "https://api.fantasticfurniture.com.au/medias/Product-Detail-Spartacus-NIVCTBRECOOOFOIOAK-LIF-CONTAINER-original-FantasticFurniture-WF?context=bWFzdGVyfGltYWdlc3w4NjMzMHxpbWFnZS9qcGVnfGFHRXhMMmd5TkM4NU9UazVOREkxTXpBMk5qVTBMMUJ5YjJSMVkzUXRSR1YwWVdsc0xWTndZWEowWVdOMWMxOU9TVlpEVkVKU1JVTlBUMDlHVDBsUFFVdGZURWxHWDBOUFRsUkJTVTVGVWw5dmNtbG5hVzVoYkY5R1lXNTBZWE4wYVdOR2RYSnVhWFIxY21VdFYwWXwwYzIwNjY4MDQyYWZmYzg0ZTkyMDM1ZmJkNzc0Yzk4NjY4ZTk3ZDdkYTBhOTA5MjM1Y2YwZTNmZDBjNTUxOGQx",
+      price: "$149",
+    },
+    {
+      id: "5",
+      title: "Dice Coffee Table Set",
+      image:
+        "https://api.fantasticfurniture.com.au/medias/Product-Detail-Spartacus-FantasticFurniture-WF-null?context=bWFzdGVyfGltYWdlc3wxNjU2NzJ8aW1hZ2UvanBlZ3xhRFkxTDJnM055OHhNRFF3TXpZME5URTVOREkzTUM5UWNtOWtkV04wTFVSbGRHRnBiQzFUY0dGeWRHRmpkWE5mUm1GdWRHRnpkR2xqUm5WeWJtbDBkWEpsTFZkR1gyNTFiR3d8ZTcwZTgzZmMyYTYzZTU4ZGI1ZjdhYzEwNWVjM2MyY2NiYWZkYTY4Y2U0OTBjZWYyYmExNDJjNjg1ODQwODIwYg",
+      price: "$269",
+    },
   ],
   boughtTogether: [
-    { id: "5", title: "Armchair", image: "/armchair.jpg", price: "$450" },
-    { id: "6", title: "Floor Lamp", image: "/lamp.jpg", price: "$150" },
+    {
+      id: "6",
+      title: "Werribee 1 Seater Armchair",
+      image:
+        "https://api.fantasticfurniture.com.au/medias/Product-Detail-Spartacus-WRQCHA1STOOOTPYDBL-LIF-CONTAINER-original-FantasticFurniture-WF?context=bWFzdGVyfGltYWdlc3wxNTMxOTV8aW1hZ2UvanBlZ3xhREl6TDJnd09TOHhNREF5T1RjNU9UTTBNakV4TUM5UWNtOWtkV04wTFVSbGRHRnBiQzFUY0dGeWRHRmpkWE5mVjFKUlEwaEJNVk5VVDA5UFZGQlpSRUpNWDB4SlJsOURUMDVVUVVsT1JWSmZiM0pwWjJsdVlXeGZSbUZ1ZEdGemRHbGpSblZ5Ym1sMGRYSmxMVmRHfDIzNzE4M2IzOTY1Mjg1NDQyMTE3YjdjMTEzMDIyMzUzZjE1MDY3Y2U2YTUyMGYyZWEyMzRlYzZjNzZjMjk0YjY",
+      price: "$259",
+    },
+    {
+      id: "7",
+      title: "Uzzi Rug",
+      image:
+        "https://api.fantasticfurniture.com.au/medias/Product-Detail-Spartacus-FantasticFurniture-WF-null?context=bWFzdGVyfGltYWdlc3w1OTUwMXxpbWFnZS9qcGVnfGFESmlMMmhqTXk4eE1EVXpPVEU0TWpJNU16QXlNaTlRY205a2RXTjBMVVJsZEdGcGJDMVRjR0Z5ZEdGamRYTmZSbUZ1ZEdGemRHbGpSblZ5Ym1sMGRYSmxMVmRHWDI1MWJHd3xiZjczNzlmZjM2NTIzNjMyNmI0MmFhM2Y3NTFjODlmY2M0MDY0MDcwY2NjODFlZmIwMTgwZDI0ZmM4MTg5YjI3",
+      price: "$299",
+    },
+    {
+      id: "8",
+      title: "Sunbury Floor Lamp",
+      image:
+        "https://api.fantasticfurniture.com.au/medias/Product-Detail-Spartacus-SBULIGLGEOOOSTEBLK-LIF-CONTAINER-original-FantasticFurniture-WF?context=bWFzdGVyfGltYWdlc3w0ODk0M3xpbWFnZS9qcGVnfGFEVmlMMmcxTlM4eE1EQXlOamc1TURJNU56TTNOQzlRY205a2RXTjBMVVJsZEdGcGJDMVRjR0Z5ZEdGamRYTmZVMEpWVEVsSFRFZEZUMDlQVTFSRlFreExYMHhKUmw5RFQwNVVRVWxPUlZKZmIzSnBaMmx1WVd4ZlJtRnVkR0Z6ZEdsalJuVnlibWwwZFhKbExWZEd8NDIxYTE2NDRlNWI5OTg2NDRlYTQ0NDViMjg5NTUxMjlmZmY2MTI4YTBhMjRkMzEwZTI2NjI2NjQ0ZmQwMjA1Nw",
+      price: "$69",
+    },
   ],
 };
 
