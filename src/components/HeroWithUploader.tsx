@@ -19,7 +19,7 @@ const HeroWithUploader = () => {
     <div className="w-full max-w-7xl h-full mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       {/* Left Hero Section */}
       <div className="space-y-6">
-        <h1 className="text-4xl font-bold leading-tight">
+        <h1 className="text-4xl font-extrabold leading-tight">
           Find Furniture That Matches Your Space
         </h1>
         <p className="text-muted-foreground text-lg">
