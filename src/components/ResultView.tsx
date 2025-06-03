@@ -2,6 +2,7 @@ import { useAppContext } from "@/AppContext";
 import ProductList from "./ProductList";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "./ui/button";
 
 const ResultView = () => {
   const { annotatedImage, detectedItems, products } = useAppContext();
@@ -32,15 +33,54 @@ const ResultView = () => {
         <div className="space-y-4">
           <h2 className="text-4xl font-semibold">We found these items</h2>
           <div className="flex flex-wrap gap-2">
-            {detectedItems.map((item, index) => (
-              <Badge
-                key={index}
-                variant="outline"
-                className="text-xl px-3 py-1.5"
-              >
-                {item}
-              </Badge>
-            ))}
+            {(() => {
+              const aliasGroups: Record<string, string> = {
+                sofa: "couch/sofa",
+                couch: "couch/sofa",
+                // Add more if needed
+              };
+
+              // Step 1: Normalize + Group items
+              const groupedItems: Record<string, string[]> = {};
+              for (const item of detectedItems) {
+                const normalized = item.toLowerCase();
+                const group = aliasGroups[normalized] || normalized;
+                if (!groupedItems[group]) groupedItems[group] = [];
+                groupedItems[group].push(normalized);
+              }
+
+              // Step 2: Deduplicate mixed aliases within same group
+              const finalCounts: Record<string, number> = {};
+              for (const [group, items] of Object.entries(groupedItems)) {
+                const itemCounts: Record<string, number> = {};
+                for (const label of items) {
+                  itemCounts[label] = (itemCounts[label] || 0) + 1;
+                }
+
+                const maxCount = Math.max(...Object.values(itemCounts));
+                finalCounts[group] = maxCount;
+              }
+
+              // Step 3: Render badges
+              return Object.entries(finalCounts).map(([item, count], index) => (
+                <Badge
+                  key={index}
+                  variant="outline"
+                  className="text-xl px-3 py-1.5"
+                >
+                  {`${count} × ${item}`}
+                </Badge>
+              ));
+            })()}
+          </div>
+          <div className="text-muted-foreground text-sm">
+            <Button
+              variant={"outline"}
+              size={"sm"}
+              onClick={() => window.location.reload()}
+            >
+              Try Again
+            </Button>
           </div>
         </div>
       </div>

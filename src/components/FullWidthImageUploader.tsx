@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { X, UploadCloud, Sparkles } from "lucide-react";
 import clsx from "clsx";
 import { useAppContext } from "@/AppContext";
+import { toast } from "sonner";
 
 // Mocked values — replace with real API data later
 const mockedRecommendations = {
@@ -135,6 +136,16 @@ const FullWidthImageUploader = () => {
     });
 
     const data = await response.json();
+
+    if (data.detected_items.length === 0) {
+      toast("Error! No Items found.", {
+        position: "top-right",
+        style: {
+          background: "#D62828",
+          color: "white",
+        },
+      });
+    }
 
     finishFetching(
       mockedRecommendations, // You can update this with actual recommended products later
