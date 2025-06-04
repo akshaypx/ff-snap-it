@@ -35,8 +35,8 @@ const ResultView = () => {
           <div className="flex flex-wrap gap-2">
             {(() => {
               const aliasGroups: Record<string, string> = {
-                sofa: "couch/sofa",
-                couch: "couch/sofa",
+                sofa: "sofa",
+                couch: "sofa",
                 // Add more if needed
               };
 
